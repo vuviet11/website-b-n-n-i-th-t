@@ -1,0 +1,51 @@
+@charset "UTF-8";
+*{
+    padding: 0;
+    margin: 0;
+}
+
+div.dssp{
+	display:flex;
+	margin-left:10%;
+	margin-right:10%;
+}
+td{
+    background-color:aqua;
+    color:sliver;
+}
+
+
+.title-dssp{
+	text-align: center;
+	padding:1%;
+	
+}
+
+.dssp{
+	background-color:#a7354e;
+}
+.sp{
+	color:white;
+	font-size:20px;
+	padding:2%;
+	margin-left:5%;
+	margin-right:5%;
+	text-align: center;
+}
+
+.back{
+	font-size:15px;
+	color:#ee0452;
+}
+.add{
+	font-size:15px;
+	background-color:#97e771;
+}
+.title{
+	color:#3c1004;
+}
+.thumbnail{
+	max-width:500px;
+	max-height:500px;
+}
+

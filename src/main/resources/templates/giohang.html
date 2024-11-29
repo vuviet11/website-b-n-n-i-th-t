@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<base href="/">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon" />
+	<title>Homepage - CoffeeShop
+	</title>
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/style.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/dark-mode.css}">
+</head>
+
+<body>
+    <main class="main-content">
+        <div class="page-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="page-header-content">
+                            <h4 class="title mt-0">Giỏ hàng</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="product-area shopping-cart-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="shopping-cart-wrap">
+                            <div class="cart-table table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="indecor-product-remove">Xóa</th>
+                                            <th class="indecor-product-thumbnail">Ảnh</th>
+                                            <th class="indecor-product-name">Sản phẩm</th>
+                                            <th class="indecor-product-price">Giá</th>
+                                            <th class="indecor-product-quantity">Số lượng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="spic : ${SanphamInCart}">
+                                            <td class="indecor-product-remove">
+                                                <a th:href="@{/quanlytaikhoan/delete/{id}(id = ${spic.masp})}">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </td>
+                                            <td class="indecor-product-thumbnail">
+                                                <img class="w-50" th:src="@{'/thiet_ke_noi_that/' + ${spic.img}}" alt="Ảnh sản phẩm">
+                                            </td>
+                                            <td class="indecor-product-name">
+                                                <h4 class="title" th:text="${spic.tensp}"></h4>
+                                            </td>
+                                            <td class="indecor-product-price">
+                                                <span class="price" th:text="${spic.giaban}"></span>
+                                            </td>
+					    					 <td class="indecor-product-price" >
+						    					 <div th:each="sl : ${slsp}">
+						    					 	<form action="#" th:action="@{/quanlydonhang/updatesoluong/{masp}/{madh}(masp=${sl.masp},madh=${sl.madh})}" method="post">
+													    <input type="number" name="soluong" th:if="${sl.masp == spic.masp}" th:value="${sl.sl}" id="input-soluong" onchange="showSaveButton()">
+	        											<input type="submit" value="Lưu" style="display:none;" class="save-button">
+												    </form>
+												</div>
+                                            </td>          	                       	
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-7 col-12">
+                                    <div class="coupon-all">
+                                        <div class="coupon">
+                                            <a class="button" href="/quanlytaikhoan/giaodienkhachhang">Tiếp tục mua hàng</a>
+                                            <a class="button" href="javascript:void(0);" ng-click="cart.clear()">Xóa giỏ hàng</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-5 col-12">
+                                    <div class="cart-page-total">
+                                        <h3>Tổng giỏ hàng</h3>
+                                        <ul>
+                                            
+                                            <li>
+                                                Tổng:
+                                                 <span class="money" th:text="${totalPrice}"> VNĐ</span>
+                                            </li>
+                                        </ul>
+                                        <a class="proceed-to-checkout-btn" th:href="@{/cart/checkout}">Tiến hành thanh toán</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+<script th:inline="javascript">
+    function showSaveButton() {
+        // Lấy phần tử input và nút "Lưu" dựa trên lớp CSS hoặc cách nhận dạng khác
+        var inputElement = document.getElementById('input-soluong');
+        var saveButton = inputElement.parentNode.querySelector('.save-button');
+
+        // Hiển thị nút "Lưu" khi giá trị của input thay đổi
+        saveButton.style.display = 'inline-block';
+    }
+</script>
+</html>

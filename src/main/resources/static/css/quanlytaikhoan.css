@@ -1,0 +1,227 @@
+@charset "UTF-8";
+*{
+    padding: 0;
+    margin: 0;
+}
+
+nav{
+    width: 100%;
+}
+ul{
+    list-style: none;
+}
+
+ul.nav-menu {
+    height: 80px;
+    width: 80%;
+    background-color: black;
+    padding-left:10%;
+    padding-right: 10%;
+    display: flex;
+}
+ul.nav-menu>li.menu-item {
+    z-index: 2;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    padding-left: 3.5%;
+    padding-right: 3.5%;
+    margin: 0,2%;
+}
+
+li.menu-item>a {
+    text-decoration: none;
+    color: white;
+}
+ul.nav-menu>li.menu-item:hover>ul.nav-menu-dropdown{
+    background-color: silver;
+    padding: 1%;
+    display: block;
+}
+
+ul.nav-menu>li.menu-item>ul.nav-menu-dropdown {
+    display: none;
+} 
+
+ul.nav-menu>li.menu-item:hover>ul.nav-menu-dropdown>li:hover{
+    background-color: slategray;
+    display: block;
+    padding: 1%;
+}
+
+ul.nav-menu>li.menu-item:hover>ul.nav-menu-dropdown>li.menu-item:hover>ul.nav-menu-dropdown{
+    background-color: brown;
+    display: block;
+}
+
+ul.nav-menu>li.menu-item>ul.nav-menu-dropdown>li.menu-item>ul.nav-menu-dropdown {
+    display: none;
+}
+
+ul.nav-menu>li.menu-item:hover>ul.nav-menu-dropdown>li.menu-item:hover>ul.nav-menu-dropdown>li:hover{
+    background-color: olive;
+    display: block;
+    padding: 1%;
+}
+
+		.nav-find {
+		    display: flex; /* Sử dụng flexbox */
+		    justify-content: center; /* Căn giữa các thành phần theo chiều ngang */
+		    align-items: center; /* Căn giữa các thành phần theo chiều dọc */
+		    color: white; /* Màu chữ */
+		    padding: 10px 0; /* Khoảng cách giữa các thành phần bên trong */
+		}
+		
+		/* Thiết lập định dạng cho từng thành phần bên trong */
+		.nav-find > .find-container {
+		    display: flex;
+		    align-items: center;
+		}
+		
+		.nav-find > .find-container > form {
+		    display: flex; /* Sử dụng flexbox */
+		    align-items: center; /* Căn giữa các thành phần bên trong */
+		}
+		
+		.nav-find > .find-container > form > input[type="text"] {
+		    padding: 15px; /* Đệm nội dung trong input */
+		    border: none; /* Bỏ viền */
+		    border-radius: 5px; /* Bo góc */
+		    font-size: 16px; /* Cỡ chữ */
+		    background-color: #f2f2f2; /* Màu nền của input */
+		    margin-right: 10px; /* Khoảng cách với nút tìm kiếm */
+		    width: 350px; /* Độ rộng cố định */
+		}
+		.nav-find > .find-container > form > input {
+		    height:20px;
+		    width:300px;
+		}
+		.nav-find > .find-container > form > button {
+		    padding: 10px 20px; /* Đệm cho nút */
+		    background-color: #0056b3; /* Màu nền */
+		    color: white; /* Màu chữ */
+		    border: none; /* Bỏ viền */
+		    border-radius: 5px; /* Bo góc */
+		    cursor: pointer; /* Con trỏ chuột thành dấu nhấp nháy */
+		    transition: background-color 0.3s ease; /* Hiệu ứng khi di chuột qua nút */
+		}
+		
+		.nav-find > .find-container > form > button:hover {
+		    background-color: #004080; /* Màu nền khi hover */
+		}
+		
+		.nav-find > .find-container > a {
+		    color: white; /* Màu chữ */
+		    text-decoration: none; /* Bỏ gạch chân */
+		    margin-left: 10px; /* Khoảng cách giữa các liên kết */
+		}
+		
+		.nav-find > .find-container > a:hover {
+		    text-decoration: underline; /* Gạch chân khi hover */
+		}
+
+
+body{
+    background: white;
+}
+
+
+
+footer{
+    display: flex;
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: lightgray;
+}
+
+footer>.properties{
+    width: 30%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.show-all-obj{
+    display: flex;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: silver;
+}
+
+.obj{
+    margin: 1%;
+}
+
+/* Style for the table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Header style */
+.table thead {
+    background-color: #333;
+    color: white;
+}
+
+/* Table row and cell style */
+.table th, .table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+/* Table body style */
+.table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Table body hover effect */
+.table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.table tbody tr:last-of-type {
+    border-bottom: 2px solid #333;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Scrollable container for the table */
+.table-container {
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Scrollbar style */
+.table-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: 3px solid #f1f1f1;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.thumbnail {
+    max-width: 100px; /* Kích thước chiều rộng tối đa */
+    max-height: 100px; /* Kích thước chiều cao tối đa */
+}
+

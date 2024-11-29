@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>TVN - Admin</title>
+    <link rel="shortcut icon" href="/assetss/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/assetss/css/style.css">
+</head>
+
+<body class="fixed-left" ng-app="admin-app" ng-controller="dashboard-ctrl">
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner"></div>
+        </div>
+    </div>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div class="left side-menu">
+            <button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
+                <i class="mdi mdi-close"></i>
+            </button>
+            <div class="topbar-left">
+                <div class="text-center bg-dark">
+                    <a href="giaodienadmin" class="logo">
+                        <img class="logo-main" src="/assetss/img/logo.png" alt="Logo" />
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-inner slimscrollleft">
+                <div id="sidebar-menu">
+                    <ul>
+                       	<li>
+					<a href="/quanlytaikhoan/giaodienadmin" class="waves-effect">
+						<i class="dripicons-to-do"></i>
+						<span>Trang Chủ</span>
+					</a>
+				</li>
+				<li>
+					<a href="/quanlydonhang" class="waves-effect">
+						<i class="dripicons-to-do"></i>
+						<span>Đơn Hàng</span>
+					</a>
+				</li>
+				<li>
+					<a href="/quanlysanpham" class="waves-effect">
+						<i class="dripicons-to-do"></i>
+						<span>Sản Phẩm</span>
+					</a>
+				</li>
+				<li>
+					<a href="/quanlynhanvien" class="waves-effect">
+						<i class="dripicons-to-do"></i>
+						<span>Nhân Viên</span>
+					</a>
+				</li>
+					<li>
+					<a href="/quanlykhachhang" class="waves-effect">
+						<i class="dripicons-to-do"></i>
+						<span>Khách Hàng</span>
+					</a>
+				</li>
+				<li>
+					<a href="/quanlytaikhoan" class="waves-effect">
+						<i class="dripicons-to-do"></i>
+						<span>Tài Khoản</span>
+					</a>
+				</li>
+				<li>
+					<a href="/quanlyhdnhap" class="waves-effect">
+						<i class="dripicons-to-do"></i>
+						<span>Hóa Đơn Nhập</span>
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/quanlysanpham/thongkesanpham}" class="waves-effect" onclick="toggleSubMenu()">
+						<i class="dripicons-to-do"></i>
+						<span>Thống Kê</span>
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/quanlydonhang/dathang}" class="waves-effect" onclick="toggleSubMenu()">
+						<i class="dripicons-to-do"></i>
+						<span>Đặt Hàng</span>
+					</a>
+				</li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="content-page">
+            <div class="content">
+                <!-- Topbar -->
+                <div class="topbar">
+                    <nav class="navbar-custom bg-dark">
+                        <ul class="list-inline float-right mb-0">
+                            <li class="list-inline-item dropdown notification-list">
+                                <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown"
+                                   href="javascript:(0);" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <img src="/assetss/img/avatar.jpg" alt="user" class="rounded-circle">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right profile-dropdown">
+                                    <a class="dropdown-item" th:href="@{/quanlytaikhoan/login}"><i class="mdi mdi-logout text-muted"></i>
+                                        Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="list-inline menu-left mb-0">
+                            <li class="float-left">
+                                <button class="button-menu-mobile open-left waves-light waves-effect bg-dark">
+                                    <i class="mdi mdi-menu"></i>
+                                </button>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </nav>
+                </div>
+
+                <!-- Dashboard Content -->
+                <div class="page-content-wrapper">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="page-title-box">
+                                    <div class="btn-group float-right">
+                                        <ol class="breadcrumb hide-phone p-0 m-0">
+                                            <li class="breadcrumb-item">
+                                                <a href="#">GROUP 12</a>
+                                            </li>
+                                            <li class="breadcrumb-item active">Dashboard</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">Dashboard</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-controller="dashboard-ctrl">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="icon-contain">
+                                                    <div class="row">
+                                                        <div class="col-2 align-self-center">
+                                                            <i class="fas fa-tasks text-gradient-success"></i>
+                                                        </div>
+                                                        <div class="col-10 text-right" >
+                                                        	<h5 class="mt-0 mb-1" th:text="${tongsp} "></h5>
+                                                            <p class="mb-0 font-12 text-muted">Sản Phẩm</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="card">
+                                            <div class="card-body justify-content-center">
+                                                <div class="icon-contain">
+                                                    <div class="row">
+                                                        <div class="col-2 align-self-center">
+                                                            <i class="far fa-gem text-gradient-danger"></i>
+                                                        </div>
+                                                        <div class="col-10 text-right">
+                                                            <h5 class="mt-0 mb-1" th:text="${tongloaisp} "></h5>
+                                                            <p class="mb-0 font-12 text-muted">Danh mục sản phẩm</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="icon-contain">
+                                                    <div class="row">
+                                                        <div class="col-2 align-self-center">
+                                                            <i class="fas fa-users text-gradient-warning"></i>
+                                                        </div>
+                                                        <div class="col-10 text-right">
+                                                            <h5 class="mt-0 mb-1" th:text="${tongtk} "></h5>
+                                                            <p class="mb-0 font-12 text-muted">Tài Khoản</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="icon-contain">
+                                                    <div class="row">
+                                                        <div class="col-2 align-self-center">
+                                                            <i class="fas fa-database text-gradient-primary"></i>
+                                                        </div>
+                                                        <div class="col-10 text-right">
+                                                             <p th:text="'Tổng tiền: ' + ${tongTien} + ' VND'"></p>
+                                                            <p class="mb-0 font-12 text-muted">Tổng tiền</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Other content or rows can be added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                Copyright © 2024 <b>TVN</b>. All rights reserved.
+            </footer>
+        </div>
+    </div>
+
+    <script src="/assetss/js/jquery.min.js"></script>
+    <script src="/assetss/js/popper.min.js"></script>
+    <script src="/assetss/js/bootstrap.min.js"></script>
+    <script src="/assetss/js/modernizr.min.js"></script>
+    <script src="/assetss/js/detect.js"></script>
+    <script src="/assetss/js/fastclick.js"></script>
+    <script src="/assetss/js/jquery.slimscroll.js"></script>
+    <script src="/assetss/js/jquery.blockUI.js"></script>
+    <script src="/assetss/js/waves.js"></script>
+    <script src="/assetss/js/jquery.nicescroll.js"></script>
+    <script src="/assetss/js/jquery.scrollTo.min.js"></script>
+    <script src="/assetss/js/sweetalert2.all.min.js"></script>
+    <script src="/assetss/js/datatables.min.js"></script>
+    <script src="/assetss/js/pdfmake.min.js"></script>
+    <script src="/assetss/js/vfs_fonts.js"></script>
+    <script src="/assetss/js/app.js"></script>
+    <script src="/assetss/js/angular.min.js"></script>
+    <script src="/assetss/js/angular-route.min.js"></script>
+    <script src="/assetss/ctrl/admin-ctrl.js"></script>
+    <script src="/assetss/ctrl/order-ctrl.js"></script>
+    <script src="/assetss/ctrl/account-ctrl.js"></script>
+    <script src="/assetss/ctrl/product-ctrl.js"></script>
+    <script src="/assetss/ctrl/category-ctrl.js"></script>
+    <script src="/assetss/ctrl/authority-ctrl.js"></script>
+    <script src="/assetss/ctrl/show-hide.js"></script>
+    <script src="/assetss/ctrl/dashboard-ctrl.js"></script>
+     
+</body>
+</html>

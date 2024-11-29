@@ -1,0 +1,198 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chỉnh sửa tài khoản - Đồ Nội Thất</title>
+    <link rel="stylesheet" th:href="@{/css/quanlytaikhoan.css}">
+    <link rel="shortcut icon" href="/assetss/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/assetss/css/style.css">
+    <style>
+        /* Định dạng các phần tử HTML */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .form label {
+            font-weight: bold;
+        }
+
+        .form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form button:hover {
+            background-color: #45a049;
+        }
+    </style>	
+</head>
+
+<body class="fixed-left" ng-app="admin-app" ng-controller="myController">
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner"></div>
+        </div>
+    </div>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div class="left side-menu">
+            <button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
+                <i class="mdi mdi-close"></i>
+            </button>
+            <div class="topbar-left">
+                <div class="text-center bg-dark">
+                    <a href="giaodienadmin" class="logo">
+                        <img class="logo-main" src="/assetss/img/logo.png" alt="Logo" />
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-inner slimscrollleft">
+                <div id="sidebar-menu">
+                    <ul>
+                        <li>
+                            <a href="/quanlytaikhoan/giaodienadmin" class="waves-effect">
+                                <i class="dripicons-to-do"></i>
+                                <span>Trang Chủ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/quanlydonhang" class="waves-effect">
+                                <i class="dripicons-to-do"></i>
+                                <span>Đơn Hàng</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/quanlysanpham" class="waves-effect">
+                                <i class="dripicons-to-do"></i>
+                                <span>Sản Phẩm</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/quanlynhanvien" class="waves-effect">
+                                <i class="dripicons-to-do"></i>
+                                <span>Nhân Viên</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/quanlykhachhang" class="waves-effect">
+                                <i class="dripicons-to-do"></i>
+                                <span>Khách Hàng</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/quanlytaikhoan" class="waves-effect">
+                                <i class="dripicons-to-do"></i>
+                                <span>Tài Khoản</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/quanlyhdnhap" class="waves-effect">
+                                <i class="dripicons-to-do"></i>
+                                <span>Hóa Đơn Nhập</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="waves-effect" onclick="toggleSubMenu()">
+                                <i class="dripicons-to-do"></i>
+                                <span>Thống Kê</span>
+                            </a>
+                            
+                        </li>
+                        <li>
+							<a th:href="@{/quanlydonhang/dathang}" class="waves-effect" onclick="toggleSubMenu()">
+								<i class="dripicons-to-do"></i>
+								<span>Đặt Hàng</span>
+							</a>
+						</li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+            <div class="container">
+                <h2 style="text-align: center;">Cập nhật thông tin tài khoản</h2>
+                    <form th:action="@{/quanlytaikhoan/{id}(id=${qltk.user})}" method="post" th:object="${qltk}" class="form">
+                        User: <input type="text" th:field="*{user}" readonly>
+                        Password: <input type="password" th:field="*{password}" required>
+                        <br><br>
+                        Mã nhân viên: <input type="text" th:field="*{manv}" required>
+                       	<button type="submit" class="btn btn-primary">Lưu</button>
+                    </form>
+                </div>
+
+    <!-- jQuery -->
+    <script src="/assetss/js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/assetss/js/popper.min.js"></script>
+    <script src="/assetss/js/bootstrap.min.js"></script>
+    <!-- Modernizr -->
+    <script src="/assetss/js/modernizr.min.js"></script>
+    <!-- Detect -->
+    <script src="/assetss/js/detect.js"></script>
+    <!-- FastClick -->
+    <script src="/assetss/js/fastclick.js"></script>
+    <!-- Slimscroll -->
+    <script src="/assetss/js/jquery.slimscroll.js"></script>
+    <!-- BlockUI -->
+    <script src="/assetss/js/jquery.blockUI.js"></script>
+    <!-- Waves -->
+    <script src="/assetss/js/waves.js"></script>
+    <!-- NiceScroll -->
+    <script src="/assetss/js/jquery.nicescroll.js"></script>
+    <!-- ScrollTo -->
+    <script src="/assetss/js/jquery.scrollTo.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="/assetss/js/sweetalert2.all.min.js"></script>
+    <!-- DataTables -->
+    <script src="/assetss/js/datatables.min.js"></script>
+    <!-- PDFMake -->
+    <script src="/assetss/js/pdfmake.min.js"></script>
+    <script src="/assetss/js/vfs_fonts.js"></script>
+    <!-- AngularJS -->
+    <script src="/assetss/js/angular.min.js"></script>
+    <script src="/assetss/js/angular-route.min.js"></script>
+    <!-- App -->
+    <script src="/assetss/js/app.js"></script>
+    <!-- Controllers -->
+    <script src="/assetss/ctrl/admin-ctrl.js"></script>
+    <script src="/assetss/ctrl/order-ctrl.js"></script>
+    <script src="/assetss/ctrl/account-ctrl.js"></script>
+    <script src="/assetss/ctrl/product-ctrl.js"></script>
+    <!-- Custom Script -->
+    <script src="/assetss/js/custom.js"></script>
+</body>
+
+</html>

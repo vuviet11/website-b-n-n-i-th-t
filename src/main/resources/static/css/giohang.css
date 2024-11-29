@@ -1,0 +1,45 @@
+@charset "UTF-8";
+*{
+    padding: 0;
+    margin: 0;
+}
+
+div.dssp{
+	display:flex;
+	margin-left:10%;
+	width:80%;
+	margin-right:10%;
+}
+th.text{
+	width:100px;
+    background-color:aqua;
+    text-align:center; 
+    padding:1%;
+}
+th.name{
+	width:300px;
+    background-color:aqua;
+    text-align:center; 
+    padding:1%;
+}
+th.img{
+	width:400px;
+    background-color:aqua;
+    text-align:center; 
+    padding:1%;
+}
+
+td{
+    background-color:aqua;
+    color:sliver;
+    text-align:center;
+}
+td>*{
+	 margin: 5%;
+}
+.thumbnail{
+	margin: 1%;
+	width:300px;
+	height:200px;
+}
+

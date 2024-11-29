@@ -1,0 +1,21 @@
+.dssp{
+	display: flex;  
+    flex-wrap: wrap;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    
+}
+.sp{
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 30%;    
+}
+.thumbnail{
+    width: 100%;
+    padding: 1%;
+}
+.title,.name,.title-dssp{
+    text-align: center;
+}
+

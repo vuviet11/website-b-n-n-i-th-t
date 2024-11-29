@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<head>
+	<base href="/">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon" />
+	<title>Homepage - Nội thất TVN
+	</title>
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/style.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/dark-mode.css}">
+</head>
+
+<body ng-app="shopping-app" ng-controller="shopping-ctrl">
+	<div class="wrapper">
+		<div class="preloader-wrap">
+			<div class="preloader">
+				<span class="dot"></span>
+				<div class="dots">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+		<main class="main-content">
+<header class="header-area header-default sticky-header" xmlns:th="http://www.thymeleaf.org">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-4 col-sm-4 col-lg-3">
+				<div class="header-logo-area">
+					<a th:href="@{/quanlytaikhoan/giaodienkhachhang}">
+						<img style="" class="logo-main" src="assets/img/logo1.png" alt="Logo" />
+					</a>
+				</div>
+			</div>
+			<div class="col-sm-4 col-lg-6 d-none d-lg-block">
+				<div class="header-navigation-area">
+					<ul class="main-menu nav position-relative">
+						<li>
+							<a href="/quanlytaikhoan/giaodienkhachhang" class="nav-link">Trang chủ</a>
+						</li>
+						<li class="has-submenu">
+							<a class="nav-link">Danh mục</a>
+							<ul class="submenu-nav">
+								<li th:each="sanpham : ${qlsp}">
+						            <a th:href="@{/quanlysanpham/timloaisp/{loaisp}(loaisp=${sanpham.loaisp})}" th:text="${sanpham.loaisp}"></a>
+						        </li>
+							</ul>
+						</li>
+						<li>
+							<a class="nav-link" href="contact">Liên hệ</a>
+						</li>
+						<li>
+							<a class="nav-link" href="about">Giới thiệu</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-sm-8 col-lg-3 d-none d-sm-block text-end">
+				<div class="header-action-area">
+					<ul class="header-action">
+						<li class="navs-menu">
+							<a class="action-item">
+								<i class="zmdi zmdi-search icon"></i>
+							</a>
+							<ul class="navs-dropdown">
+								<li class="account">
+									<div class="search-form-wrap">
+										<div class="search-form">
+											 <form action="#" th:action="@{/quanlytaikhoan/sanpham}" method="post">
+												<div class="form-group">
+													<input class="form-control" type="search" name="data"
+														placeholder="Tìm trong cửa hàng">
+													<button type="submit" class="btn-search">Tìm kiếm</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</li>
+
+						<li class="mini-cart">
+						
+						</li>
+						<li class="mini-cart">
+							<a class="action-item">
+								<i class="zmdi zmdi-shopping-cart-plus icon"></i>
+								<span class="cart-quantity" th:text="${tongmasp}"></span>
+							</a>
+							<div class="mini-cart-dropdown">
+								<div class="cart-item" ng-repeat="item in cart.items">
+									<div class="thumb">
+										<img class="w-100" src="/assets/images/{{item.image}}">
+									</div>
+									<div class="content">
+										<h5 class="title">{{item.name}}</h5>
+										<span class="product-quantity">x{{item.qty}}</span>
+										<span class="product-price">${{item.price | number:2}}</span>
+										<a class="cart-trash" ng-click="cart.remove(item.id)">
+											<i class="fa fa-trash"></i>
+										</a>
+									</div>
+								</div>
+								<div class="cart-total-money">
+									<h5>
+										Tổng cộng:<span class="money" th:text="${totalPrice} + ' VNĐ'"></span>
+									</h5>
+								</div>
+								<div class="cart-btn">
+									<a th:href="@{/quanlytaikhoan/giohang}">Xem giỏ hàng</a>
+									<a th:href="@{/cart/checkout}">Thanh toán</a>
+								</div>
+							</div>
+						</li>
+						<li class="navs-menu">
+							<a class="action-item">
+								<i class="zmdi zmdi-lock-outline icon"></i>
+							</a>
+							<ul class="navs-dropdown">
+								<li class="account" th:each="user : ${userName}">
+									<ul th:if="${user == 'none'}">
+											<li>
+												<a th:href="@{/quanlytaikhoan/login}">Đăng nhập</a>
+											</li>
+											<li>
+												<a th:href="@{/quanlytaikhoan/login}">Đăng kí</a>
+											</li>
+									</ul>
+									<ul th:unless="${user == 'none'}">														
+											<li>
+												<a th:href="@{/auth/forgot-password}" th:text="${user}"></a>
+											</li>
+											<li>
+												<a th:href="@{/auth/forgot-password}">Quên mật khẩu?</a>
+											</li>
+											<li th:each="ds : ${makh}">
+												<a th:href="@{/quanlydonhang/daduyet/{makh}(makh=${ds})}">Đơn đặt hàng</a>
+											</li>
+											<li>
+												<a th:href="@{/auth/change-password}">Đổi mật khẩu</a>
+											</li>
+											<li>
+												<a th:href="@{/quanlytaikhoan/logout}">Đăng xuất</a>
+											</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				
+			</div>
+			
+			<div class="col-6 col-sm-1 d-block d-lg-none text-end">
+				<button class="btn-menu" type="button">
+					<i class="zmdi zmdi-menu"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</header>		
+<section class="home-slider-area">
+			<div class="swiper-container swiper-slide-gap home-slider-container default-slider-container">
+				<div class="swiper-wrapper home-slider-wrapper slider-default">
+					<div class="swiper-slide">
+						<div class="slider-content-area" data-bg-img="assets/img/slider/s-1.jpg">
+							<div class="slider-content">
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="slider-content-area" data-bg-img="assets/img/slider/s-2.jpg">
+							<div class="slider-content">
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="slider-content-area" data-bg-img="assets/img/slider/s-3.jpg">
+							<div class="slider-content">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-button-next">
+					<i class="zmdi zmdi-chevron-right"></i>
+				</div>
+				<div class="swiper-button-prev">
+					<i class="zmdi zmdi-chevron-left"></i>
+				</div>
+			</div>
+		</section>
+
+		<div class="container">
+    <section class="product-area">
+        <div class="container product-pb" data-padding-bottom="25">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-lg-7 m-auto">
+                            <div class="section-title text-center">
+                                <h2 class="title">Gian Hàng</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3" th:each="qlsp : ${dssp}">
+                            <div class="product-item">
+                                <div class="inner-content">
+                                    <div class="product-thumb">
+                                        <img class="product-item m-auto d-block" 
+                                             th:src="@{'/thiet_ke_noi_that/' + ${qlsp.img}}" 
+                                             th:alt="${qlsp.tensp}" />
+                                    </div>
+                                    <div class="product-desc">
+                                        <div class="product-info">
+                                            <h4 class="title">
+                                                <a th:href="@{/quanlytaikhoan/chitiet/{id}(id=${qlsp.masp})}" 
+                                                   th:text="${qlsp.tensp}"></a>
+                                            </h4>
+                                            <div class="prices">
+                                                <span>Giá bán: </span>
+                                                <span class="price" th:text="${qlsp.giaban}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- End col-md-3 -->
+                    </div> <!-- End row -->
+                </div> <!-- End col-12 -->
+            </div> <!-- End row -->
+        </div> <!-- End container -->
+    </section>
+</div> <!-- End container -->
+
+			<div class="row">
+				<div class="col-12">
+					<div class="pagination-content-wrap border-bottom">
+						<nav class="pagination-nav">
+							<ul class="pagination justify-content-center">
+								<li>
+									<button class="prev" ng-click="pager.prev()">
+										<i class="fa fa-chevron-left"></i>
+									</button>
+								</li>
+								<li>
+									<a class="active">{{pager.page+1}} / {{pager.count?pager.count:'1'}}</a>
+								</li>
+								<li>
+									<button class="next" ng-click="pager.next()">
+										<i class="fa fa-chevron-right"></i>
+									</button>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+
+			<section class="feature-area">
+				<div class="container pb-1">
+					<div class="row">
+						<div class="col-md-6 col-lg-4">
+							<div class="feature-icon-box">
+								<div class="inner-content">
+									<div class="icon-box">
+										<i class="icon zmdi zmdi-pin"></i>
+									</div>
+									<div class="content">
+										<h5 class="title">Miễn phí giao hàng nội tỉnh</h5>
+										<p>Miễn phí giao hàng đơn trên 500 nghìn đồng</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-4">
+							<div class="feature-icon-box">
+								<div class="inner-content">
+									<div class="icon-box">
+										<i class="icon zmdi zmdi-headset"></i>
+									</div>
+									<div class="content">
+										<h5 class="title">Hỗ trợ 24/7</h5>
+										<p>Liên hệ với chúng tôi 24 giờ một ngày.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-4">
+							<div class="feature-icon-box">
+								<div class="inner-content mb-0">
+									<div class="icon-box">
+										<i class="icon zmdi zmdi-card"></i>
+									</div>
+									<div class="content">
+										<h5 class="title">Thanh toán an toàn 100%</h5>
+										<p>Thanh toán của bạn được đảm bảo an toàn.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+</main>
+	</div>
+
+	<footer class="footer-area">
+		<div class="footer-top-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-lg-3">
+						<div class="widget-item">
+							<div class="about-widget">
+								<div class="footer-logo-area">
+									<a href="index.html">
+										<img class="logo-main" src="assets/img/logo1.png" alt="Logo" />
+									</a>
+								</div>
+								<ul>
+									<li>
+										<i class="zmdi zmdi-pin"></i> Tòa EAUT
+									</li>
+									<li>
+										<i class="zmdi zmdi-email"></i>
+										<a href="mailto://20212270@eaut.edu.vn">20212270@eaut.edu.vn</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3">
+						<div class="widget-item widget-item-one">
+							<h4 class="widget-title">Thông tin</h4>
+							<div class="widget-menu-wrap">
+								<ul class="nav-menu">
+									<li>
+										<a href="javascript:(0);">Sản phẩm mới</a>
+									</li>
+									<li>
+										<a href="javascript:(0);">Bán chạy</a>
+									</li>
+									<li>
+										<a href="javascript:(0);">Cửa hàng của chúng tôi</a>
+									</li>
+									<li>
+										<a href="javascript:(0);">Tài khoản</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3">
+						<div class="widget-item widget-item-two">
+							<h4 class="widget-title">Hỗ trợ nhanh</h4>
+							<div class="widget-menu-wrap">
+								<ul class="nav-menu">
+									<li>
+										<a href="javascript:(0);">Liên hệ chúng tôi</a>
+									</li>
+									<li>
+										<a href="javascript:(0);">Trung tâm hỗ trợ</a>
+									</li>
+									<li>
+										<a href="javascript:(0);">Chính sách đổi trả</a>
+									</li>
+									<li>
+										<a href="javascript:(0);">Phản ánh</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3">
+						<div class="widget-item">
+							<h4 class="widget-title">Theo dõi tin tức</h4>
+							<div class="widget-newsletter">
+								<div class="newsletter-form">
+									<form>
+										<input type="email" class="form-control" placeholder="email@example.com">
+										<button class="btn-submit" type="button">Đăng kí</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<p class="copyright">
+							Copyright © 2024, NỘI THẤT TVN . Made with <i class="fa fa-heart icon-heart"></i> by
+							<a href="javascript:(0);"> NHOM 12</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<div id="scroll-to-top" class="scroll-to-top">
+		<span class="fa fa-angle-double-up"></span>
+	</div>
+
+	<aside class="off-canvas-wrapper">
+		<div class="off-canvas-inner">
+			<div class="off-canvas-overlay"></div>
+			<div class="off-canvas-content">
+				<div class="off-canvas-header">
+					<div class="close-action">
+						<button class="btn-menu-close">
+							Menu <i class="fa fa-chevron-left"></i>
+						</button>
+					</div>
+				</div>
+
+				<div class="off-canvas-item">
+					<div class="res-mobile-menu menu-active-one"></div>
+				</div>
+			</div>
+		</div>
+	</aside>
+
+	<script src="assets/js/jquery-3.6.0.min.js"></script>
+	<script src="assets/js/modernizr.min.js"></script>
+	<script src="assets/js/jquery-migrate.js"></script>
+	<script src="assets/js/jquery.slicknav.min.js"></script>
+	<script src="assets/js/sweetalert2.all.min.js"></script>
+	<script src="assets/js/jquery-zoom.min.js"></script>
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/headroom.min.js"></script>
+	<script src="assets/js/swiper.min.js"></script>
+	<script src="assets/js/fancybox.min.js"></script>
+	<script src="assets/js/custom.js"></script>
+	<script src="assets/js/angular.min.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/script.js"></script>
+
+</body>
+
+</html>

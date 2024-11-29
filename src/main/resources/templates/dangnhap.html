@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập/Đăng ký tài khoản</title>
+    <link rel="stylesheet" th:href="@{/css/fontawesome-free-5.15.1-web/css/all.css}">
+    <link rel="stylesheet" th:href="@{/css/dangnhap.css}">
+</head>
+<body>
+    <section class="page">
+        <header class="header">
+            <section class="grid">
+                <section class="header-wrap">
+                    <label for="menu-checkbox" class="show-menu-btn">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </label>
+                </section>
+            </section>
+        </header>
+
+        <section class="content">
+            <!-- Login Form -->
+            <section id="login-form" class="auth">
+                <section class="auth__header">
+                    <h2>Đăng nhập</h2>
+                    <span id="switch-btn1" class="switch-btn">Đăng ký</span>
+                </section>
+                <form class="auth__form"  action="/quanlytaikhoan/login" method="post">
+                    <section class="form-control">
+                        <label for="usernameL">Tên đăng nhập</label>
+                        <input type="text" id="usernameL" name="user" placeholder="Nhập tên đăng nhập" required>
+                        <small>Error message</small>
+                    </section>
+                    <section class="form-control">
+                        <label for="passwordL">Mật khẩu</label>
+                        <input type="password" id="passwordL" name="password" placeholder="Nhập mật khẩu" required>
+                        <small>Error message</small>
+                    </section>
+                    <input type="submit" value="Login">
+                </form>
+            </section>
+
+            <!-- Registration Form -->
+            <section id="reg-form" class="auth">
+                <section class="auth__header">
+                    <h2>Đăng ký</h2>
+                    <span id="switch-btn2" class="switch-btn">Đăng nhập</span>
+                </section>
+                <form class="auth__form" action="/quanlytaikhoan/dangky" method="post">
+                    <section class="form-control">
+                        <label for="usernameR">Tên đăng nhập</label>
+                        <input type="text" id="usernameR" name="user" placeholder="Nhập tên đăng nhập" required>
+                        <small>Error message</small>
+                    </section>
+                                        <section class="form-control">
+                        <label for="passwordR">Mật khẩu</label>
+                        <input type="password" id="passwordR" name="password" placeholder="Nhập mật khẩu" required>
+                        <small>Error message</small>
+                    </section>
+                    <section class="form-control">
+                        <label for="re-password">Xác nhận mật khẩu</label>
+                        <input type="password" id="re-password" name="rePassword" placeholder="Nhập lại mật khẩu" required>
+                        <small>Error message</small>
+                    </section>
+                    <section class="form-control">
+                        <label for="tenkh">Tên khách hàng</label>
+                        <input type="text" id="tenkh" name="tenkh" placeholder="hoàng văn a" required>
+                        <small>Error message</small>
+                    </section>
+                    <section class="form-control">
+                        <label for="dckh">Địa chỉ</label>
+                        <input type="text" id="diachi" name="dckh" placeholder="xã-huyện-tỉnh" required>
+                        <small>Error message</small>
+                    </section>
+                    <section class="form-control">
+                        <label for="sdt">Số điện thoại</label>
+                        <input type="text" id="sdt" name="sdt" placeholder="0xxx-xxx-xxx" required>
+                        <small>Error message</small>
+                    </section>
+                    <button class="auth_btn" id="btnReg" type="submit">Đăng ký</button>
+                </form>
+            </section>	
+        </section>
+    </section>
+    <script th:src="@{/css/sign_in.js}"></script>
+    <script th:src="@{/css/reg.js}"></script>
+    
+</body>
+</html>

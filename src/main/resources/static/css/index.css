@@ -1,0 +1,110 @@
+@charset "UTF-8";
+*{
+    padding: 0;
+    margin: 0;
+}
+
+nav{
+    width: 100%;
+}
+ul{
+    list-style: none;
+}
+
+ul.nav-menu {
+    height: 60px;
+    width: 80%;
+    background-color: black;
+    padding-left:10%;
+    padding-right: 10%;
+    display: flex;
+}
+ul.nav-menu>li.menu-item {
+    z-index: 2;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    padding-left: 3.5%;
+    padding-right: 3.5%;
+    margin: 0,2%;
+}
+
+li.menu-item>a {
+    text-decoration: none;
+    color: white;
+}
+ul.nav-menu>li.menu-item:hover>ul.nav-menu-dropdown{
+    background-color: silver;
+    padding: 1%;
+    display: block;
+}
+
+ul.nav-menu>li.menu-item>ul.nav-menu-dropdown {
+    display: none;
+} 
+
+ul.nav-menu>li.menu-item:hover>ul.nav-menu-dropdown>li:hover{
+    background-color: slategray;
+    display: block;
+    padding: 1%;
+}
+
+ul.nav-menu>li.menu-item:hover>ul.nav-menu-dropdown>li.menu-item:hover>ul.nav-menu-dropdown{
+    background-color: brown;
+    display: block;
+}
+
+ul.nav-menu>li.menu-item>ul.nav-menu-dropdown>li.menu-item>ul.nav-menu-dropdown {
+    display: none;
+}
+
+ul.nav-menu>li.menu-item:hover>ul.nav-menu-dropdown>li.menu-item:hover>ul.nav-menu-dropdown>li:hover{
+    background-color: olive;
+    display: block;
+    padding: 1%;
+}
+
+.nav-find{
+    background-color: blanchedalmond;
+    width: 50%;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.nav-find>div.find{
+    display: flex;
+}
+
+.nav-find>div.find>.form{
+    display: flex;
+	
+}
+.nav-find>div.find>input{
+    width: 60%;
+    padding: 1%;
+    font-size: 14px;
+}
+.nav-find>div.find>*{
+    margin: 2%;
+}
+
+body{
+    background: burlywood;
+}
+
+
+
+footer{
+    display: flex;
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: lightgray;
+}
+
+footer>.properties{
+    width: 30%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}

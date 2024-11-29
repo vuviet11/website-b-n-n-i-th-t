@@ -1,0 +1,99 @@
+.title-objname{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: image-set("img/nền.jpg");
+    display: flex;
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.title-objname>.furniture{
+    width: 100%;
+    padding: 2.5%;
+    margin-left: 1%;
+    margin-right: 1%;    
+    color: white;
+}
+
+.title-objname>.furniture>.title-text-left{
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
+
+.title-objname>.furniture>.title-text-right{
+    margin-top: 5%;
+    margin-bottom: 1%;
+}
+
+.title-objname>.furniture>.title-text-left>a,.title-objname>.furniture>.title-text-right>a{
+    color:teal;
+}
+
+
+.title-objname>.furniture>.title-text-left>*{
+    text-align: left;
+    width: 100%;    
+}
+.title-objname>.furniture>.title-text-right>*{
+    text-align: right;    
+    width: 100%;    
+
+}
+.title-item{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.title-item>h1{
+    margin-left: 25%;
+    margin-right: 25%;    
+}
+
+.type-of-room{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 90%;
+}
+
+.type-of-room>.room>img{
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius:25%;
+    width: 95%;
+}
+.type-of-room>.room>a{
+    padding-left: 20%;
+    padding-right: 20%;
+    text-decoration: none;
+}
+.type-of-room>.room:hover{
+    background: silver;
+}
+
+.type-of-furniture{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 90%;
+}
+
+.type-of-furniture>.furniture>img{
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius:25% ;
+    width: 95%;
+}
+.type-of-furniture>.furniture>a{
+    padding-left: 35%;
+    padding-right: 35%;
+    text-decoration: none;
+}
+.type-of-furniture>.furniture:hover{
+    background: silver;
+}

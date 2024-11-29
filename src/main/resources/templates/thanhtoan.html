@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<base href="/">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon" />
+	<title>Homepage - Nội Thất TVN
+	</title>
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/style.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/dark-mode.css}">
+	<style>
+		
+		#update {
+		    margin-top: 20px;
+		    padding: 20px;
+		    border: 1px solid #ccc;
+		    border-radius: 8px;
+		    background-color: #f9f9f9;
+		    color: black;
+		}
+
+		.form-group {
+		    margin-bottom: 15px;
+		}
+
+		label {
+		    display: block;
+		    margin-bottom: 5px;
+		    font-weight: bold;
+		}
+
+		input[type="text"],
+		input[type="submit"] {
+		    width: 100%;
+		    padding: 10px;
+		    margin: 5px 0;
+		    box-sizing: border-box;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		}
+
+		input[type="submit"] {
+		    background-color: #4CAF50;
+		    color: white;
+		    border: none;
+		    cursor: pointer;
+		}
+
+		input[type="submit"]:hover {
+		    background-color: #45a049;
+		}
+
+		.btn-box button,
+		.btn-box a {
+		    display: inline-block;
+		    padding: 10px 20px;
+		    color: white;
+		    text-decoration: none;
+		    border-radius: 4px;
+		    border: none;
+		    cursor: pointer;
+		}
+
+		.btn-box button:hover
+		{
+		    background-color: #0056b3;
+		}
+	</style>
+	<script>
+		function updatekh() {
+		    var update = document.getElementById('update');
+		    if (update.style.display === 'block') {
+		    	update.style.display = 'none';
+		    } else {
+		    	update.style.display = 'block';
+		    }
+		}
+	</script>
+</head>
+<body>
+	<main class="main-content">
+		<section class="product-area product-information-area">
+			<div class="container">
+				<div class="product-information">
+					<div class="row">
+						<div class="col-lg-7">
+							<div class="edit-checkout-head">
+								<div class="breadcrumb-area">
+									<ul>
+										<li>
+											<a class="active" th:href="@{/quanlytaikhoan/giaodienkhachhang}">Trang chủ</a>
+											<i class="fa fa-angle-right"></i>
+										</li>
+										<li>Thanh toán</li>
+									</ul>
+								</div>
+							</div>
+							<div class="edit-checkout-information">
+								<div class="edit-checkout-form">
+									<h4 class="title">Địa chỉ giao hàng</h4>
+									<div class="row row-gutter-12" th:each=" kh : ${dskh}">
+										<div class="col-lg-6">
+											<div class="form-floating">
+												<span class="form-control" style="line-height: 2.25;" id="username" th:text="${kh.makh}"></span>
+												<label>Mã khách hàng</label>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-floating">
+												<span class="form-control" style="line-height: 2.25;" th:text="${kh.tenkh}"></span>
+												<label>Họ và tên</label>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="form-floating">
+												<span class="form-control" style="line-height: 2.25;" th:text="${kh.diachikh}"></span>
+												<label>Địa chỉ</label>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="form-floating">
+												<span class="form-control" style="line-height: 2.25;" th:text="${kh.sdt}"></span>
+												<label>Số điện thoại</label>
+											</div>
+										</div>
+										<div class="col-12">
+											<div class="btn-box">
+												<button class="btn-shipping" onclick="updatekh()">Cập nhật dữ liệu khách hàng</button>
+												<a class="btn-return" th:href="@{/quanlytaikhoan/giohang}">Trở về giỏ hàng</a>
+											</div>
+												<form id="update" style="display:none;" action="#" th:action="@{/quanlykhachhang/{makh}(makh=${kh.makh})}" method="post" >
+												<br><br>
+													Họ và Tên: <input type="text" name="tenkh" th:value="${kh.tenkh}" required> <br><br>
+													Địa chỉ: <input type="text" name="dckh" th:value="${kh.diachikh}" required> <br><br>
+													Số điện thoại: <input type="text" name="sdtkh" th:value="${kh.sdt}" required> <br><br>
+													<input type="submit" value="Chỉnh sửa">
+												</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-5">
+							<div class="shipping-cart-subtotal-wrapper">
+								<div class="shipping-cart-subtotal">
+									<div class="shipping-cart-item" th:each="dto : ${donhangDTOs}">
+										<div class="thumb">
+											<img th:src="@{'/thiet_ke_noi_that/' + ${dto.sanpham.img}}" class="thumbnail">
+											<span class="quantity" th:text="${dto.donhangChitiet.sl}"></span>
+										</div>
+										<div class="content">
+											<h4 class="title" th:text="${dto.sanpham.tensp}"></h4>
+											<span class="info" th:text="${dto.sanpham.giaban} + ' | ' + ${dto.donhangChitiet.sl}"></span>
+											<span class="price" th:text="${dto.sanpham.giaban * dto.donhangChitiet.sl}"></span>
+											<h4 class="title" th:text="${#dates.format(dto.donhang.ngay, 'yyyy-MM-dd')}"></h4>
+										</div>
+									</div>
+									
+									<div class="shipping-total">
+										<p class="total">Tổng</p>
+										<p class="price">
+											<span class="price" th:text="${gia} + ' VNĐ'"></span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</body>
+</html>

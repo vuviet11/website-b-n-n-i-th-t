@@ -1,0 +1,12 @@
+.show-all-obj{
+    display: flex;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: silver;
+}
+
+.obj{
+    margin: 1%;
+}
+
